@@ -8,6 +8,7 @@ const connectDB = require('./DataBase/connectDB')
 const { userRouter, postRouter } = require('./router/allRouter');
 const sendEmail = require('./commen/email');
 const userModel = require('./DataBase/model/user.model');
+const { json } = require('express');
 
 require('dotenv').config()
 const app = express()
@@ -92,5 +93,6 @@ app.get(`/pdf`,async (req,res)=>{
     res.end()
 })
 createInvoice(invoice, "invoice.pdf");
+app.get(`/`,(req,res)=>{res.json({message:`hello world`})})
 connectDB()
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
